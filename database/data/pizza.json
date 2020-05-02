@@ -1,0 +1,38 @@
+[
+    {
+        "name": "The Original Neapolitan",
+        "image": "https://www.tripsavvy.com/thmb/bGq0C5ezMD4SPX--8ODRTGJBq90=/800x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/pizza-neapolitan-56a310505f9b58b7d0d0382c.jpg"
+    },
+    {
+        "name": "California Style",
+        "image": "https://www.tripsavvy.com/thmb/yHfpUyJpsrWJ2brKC4izn9l3yWQ=/800x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/154414313_HighRes-resize-56a30fc95f9b58b7d0d0377f.jpg"
+    },
+    {
+        "name": "Chicago Deep Dish",
+        "image": "https://www.tripsavvy.com/thmb/nWgo7KWEVT-f936dhrvKIq8mW64=/800x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/stuffed-vegetarian-pizza-86288165-58e6db275f9b58ef7e21d4ca.jpg"
+    },
+    {
+        "name": "Chicago Thin Crust",
+        "image": "https://www.tripsavvy.com/thmb/jexUFwkeRqqq-y6JHSRHEzpdizE=/800x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/ThinCrustSquarePizza-5c1f55a546e0fb00016478d6.jpg"
+    },
+    {
+        "name": "Detroit Style",
+        "image": "https://www.tripsavvy.com/thmb/jexUFwkeRqqq-y6JHSRHEzpdizE=/800x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/ThinCrustSquarePizza-5c1f55a546e0fb00016478d6.jpg"
+    },
+    {
+        "name": "New England Greek Style",
+        "image": "https://www.tripsavvy.com/thmb/auY2hmSOtkrTpMhvQtn917Hz2mA=/800x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Greek-style-pizza-greggman-56a30fc85f9b58b7d0d0377c.jpg"
+    },
+    {
+        "name": "New York Thin Crust",
+        "image": "https://www.tripsavvy.com/thmb/Oc6F_nZqbVA5jods-FKHAJuWm28=/800x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/high-angle-view-of-pizza-in-box-on-table-643834085-58e6db813df78c51625f4523.jpg"
+    },
+    {
+        "name": "St. Louis Style",
+        "image": "https://www.tripsavvy.com/thmb/o1jhUNR_FRU_YagzIikjpn33efM=/800x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/PizzaWithThinCrust-5c40f440c9e77c0001ce1bcf.jpg"
+    },
+    {
+        "name": "Tomato Pie",
+        "image": "https://www.tripsavvy.com/thmb/Ey16lD7QsFEWralvptUfwrYRl5s=/800x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/making-of-pizza-522253660-5845d6aa3df78c023041c771.jpg"
+    }
+]
