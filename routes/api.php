@@ -27,3 +27,7 @@ Route::group([
         Route::get('user', 'AuthController@user');
     });
 });
+
+Route::group(['middleware' => 'api', 'prefix' => 'pizza'], function ($router) {
+    Route::post('list', 'PizzaController@index');
+});
