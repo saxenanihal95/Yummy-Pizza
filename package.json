@@ -10,6 +10,8 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.8.3",
+        "@babel/plugin-proposal-decorators": "^7.8.3",
         "@babel/preset-react": "^7.0.0",
         "axios": "^0.19",
         "bootstrap": "^4.0.0",
@@ -25,6 +27,8 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
-        "antd": "^4.2.0"
+        "antd": "^4.2.0",
+        "mobx": "^5.15.4",
+        "mobx-react": "^6.2.2"
     }
 }
