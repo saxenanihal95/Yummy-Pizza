@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import { Layout, Drawer, Button, Badge } from "antd";
+import { Layout, Drawer, Button, Badge, List, Avatar, Modal } from "antd";
 
 const { Header } = Layout;
-import { List, Avatar } from "antd";
 
-import { ShoppingCartOutlined } from "@ant-design/icons";
+import { ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
 import { inject, observer } from "mobx-react";
-import { toJS } from "mobx";
+import Login from "./Login";
+import Register from "./Register";
 
-@inject("pizzaStore")
+@inject("pizzaStore", "authStore")
 @observer
 export default class extends Component {
     constructor() {
@@ -30,6 +30,7 @@ export default class extends Component {
 
     render() {
         const { cartList, total } = this.props.pizzaStore;
+        const { modalVisible, isLogin, setModalVisible } = this.props.authStore;
         return (
             <Header
                 style={{
@@ -39,6 +40,10 @@ export default class extends Component {
                 }}
             >
                 <p style={{ fontSize: 18, flex: 1, margin: 0 }}>Yummy Pizza</p>
+                <UserOutlined
+                    style={{ fontSize: 30, margin: "0px 10px" }}
+                    onClick={() => setModalVisible(true)}
+                />
                 <Badge count={cartList.length}>
                     <ShoppingCartOutlined
                         style={{ fontSize: 30 }}
@@ -66,15 +71,31 @@ export default class extends Component {
                             </List.Item>
                         )}
                         footer={
-                            <>
-                                <p>total: {total}</p>
-                                <Button style={{ width: "100%" }}>
-                                    Checkout
-                                </Button>
-                            </>
+                            !!total && (
+                                <>
+                                    <p>total: {total}</p>
+                                    <Button
+                                        style={{ width: "100%" }}
+                                        onClick={() => {
+                                            this.onClose();
+                                            setModalVisible(true);
+                                        }}
+                                    >
+                                        Checkout
+                                    </Button>
+                                </>
+                            )
                         }
                     />
                 </Drawer>
+                <Modal
+                    visible={modalVisible}
+                    footer={null}
+                    title={isLogin ? "Login" : "Register"}
+                    onCancel={() => setModalVisible(false)}
+                >
+                    {isLogin ? <Login /> : <Register />}
+                </Modal>
             </Header>
         );
     }

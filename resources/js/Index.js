@@ -4,7 +4,7 @@ import "antd/dist/antd.css";
 import Home from "./pages/Home";
 import Store from "./stores";
 import { Provider } from "mobx-react";
-import { Layout } from "antd";
+import { Layout, Modal } from "antd";
 
 import Header from "./components/Header";
 
