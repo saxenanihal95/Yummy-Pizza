@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import { Drawer, Button, List, Avatar } from "antd";
 import { observer, inject } from "mobx-react";
 
-@inject("pizzaStore")
+@inject("pizzaStore", "authStore")
 @observer
 class CartDrawer extends Component {
     render() {
-        const { cartList, total } = this.props.pizzaStore;
+        const { cartList, total, order } = this.props.pizzaStore;
+        const { isAuthenticated, setModalVisible } = this.props.authStore;
         const { onClose, visible } = this.props;
         return (
             <Drawer
@@ -36,7 +37,9 @@ class CartDrawer extends Component {
                                     style={{ width: "100%" }}
                                     onClick={() => {
                                         onClose();
-                                        setModalVisible(true);
+                                        !isAuthenticated
+                                            ? setModalVisible(true)
+                                            : order();
                                     }}
                                 >
                                     Checkout
