@@ -1,4 +1,4 @@
-import React, { useState, Component } from "react";
+import React, { Component } from "react";
 import { Button } from "antd";
 import { inject, observer } from "mobx-react";
 import { toJS } from "mobx";
@@ -6,10 +6,6 @@ import { toJS } from "mobx";
 @inject("pizzaStore")
 @observer
 class AddToCart extends Component {
-    // const [quantity, setQuantity] = useState(0);
-    // const addQuanity = () => setQuantity(quantity + 1);
-    // const removeQuantity = () => setQuantity(quantity - 1);
-
     render() {
         const { quantity, addQuanity, removeQuantity } = this.props.pizzaStore;
         const { id } = this.props;
