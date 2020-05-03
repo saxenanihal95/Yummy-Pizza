@@ -23,9 +23,8 @@ export default class extends Component {
     onClose = () => this.setState({ visible: false });
 
     render() {
-        const { isAuthenticated } = this.props;
         const { cartList } = this.props.pizzaStore;
-        const { setModalVisible } = this.props.authStore;
+        const { setModalVisible, isAuthenticated } = this.props.authStore;
         return (
             <Header
                 style={{

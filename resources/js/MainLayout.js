@@ -15,10 +15,9 @@ class MainLayout extends Component {
     }
 
     render() {
-        const { isAuthenticated } = this.props.authStore;
         return (
             <Layout>
-                <Header isAuthenticated={isAuthenticated} />
+                <Header />
                 <Content>
                     <Home />
                 </Content>
