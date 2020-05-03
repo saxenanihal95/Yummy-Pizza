@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { List, Card } from "antd";
-import axios from "axios";
 import AddToCart from "../components/AddToCart";
 import { inject, observer } from "mobx-react";
 
@@ -20,19 +19,24 @@ class App extends Component {
                 grid={{ gutter: 16, column: 4 }}
                 dataSource={pizzaList}
                 loading={loading}
-                renderItem={item => (
+                renderItem={({ id, image, name, price, quantity }) => (
                     <List.Item>
                         <Card
                             cover={
                                 <img
-                                    alt="example"
-                                    src={item.image}
+                                    alt="pizza-img"
+                                    src={image}
                                     style={{ height: 250 }}
                                 />
                             }
                         >
-                            <Meta title={item.name} />
-                            <AddToCart id={item.id} />
+                            <Meta
+                                title={name}
+                                description={`${
+                                    quantity > 0 ? price * quantity : price
+                                } $`}
+                            />
+                            <AddToCart id={id} quantity={quantity} />
                         </Card>
                     </List.Item>
                 )}

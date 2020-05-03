@@ -7,10 +7,9 @@ import { toJS } from "mobx";
 @observer
 class AddToCart extends Component {
     render() {
-        const { quantity, addQuanity, removeQuantity } = this.props.pizzaStore;
-        const { id } = this.props;
-        console.log(toJS(quantity));
-        if (quantity[id] >= 1) {
+        const { addQuanity, removeQuantity } = this.props.pizzaStore;
+        const { id, quantity } = this.props;
+        if (quantity >= 1) {
             return (
                 <div style={{ marginTop: 20, display: "flex" }}>
                     <Button
@@ -26,7 +25,7 @@ class AddToCart extends Component {
                             margin: 0
                         }}
                     >
-                        {quantity[id]}
+                        {quantity}
                     </p>
                     <Button onClick={() => addQuanity(id)} style={{ flex: 1 }}>
                         +
