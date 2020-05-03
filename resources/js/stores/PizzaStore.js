@@ -33,6 +33,18 @@ export default class PizzaStore extends FetchBase {
         return this.pizzaList.filter(({ quantity }) => quantity);
     }
 
+    order = async () => {
+        const params = {
+            total: this.total,
+            pizza: this.pizzaList.filter(({ quantity }) => quantity)
+        };
+        try {
+            const { data } = await this.post("order/new", { ...params });
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
     @computed get total() {
         return this.pizzaList
             .filter(({ quantity }) => quantity)

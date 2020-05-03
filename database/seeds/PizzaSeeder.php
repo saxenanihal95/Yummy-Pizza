@@ -21,7 +21,7 @@ class PizzaSeeder extends Seeder
             Pizza::create(array(
                 'name' => $obj->name,
                 'image' => $obj->image,
-                'price' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = 200)
+                'price' => $faker->randomFloat($nbMaxDecimals = NULL, $min = 50, $max = 200)
             ));
         }
     }

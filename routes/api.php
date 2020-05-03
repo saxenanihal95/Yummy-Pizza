@@ -31,3 +31,7 @@ Route::group([
 Route::group(['middleware' => 'api', 'prefix' => 'pizza'], function ($router) {
     Route::get('list', 'PizzaController@index');
 });
+
+Route::group(['middleware' => 'api', 'prefix' => 'order'], function ($router) {
+    Route::post('new', 'OrderController@create');
+});
