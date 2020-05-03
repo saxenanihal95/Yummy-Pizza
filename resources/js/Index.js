@@ -1,24 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
-import Home from "./pages/Home";
+
 import Store from "./stores";
 import { Provider } from "mobx-react";
-import { Layout, Modal } from "antd";
 
-import Header from "./components/Header";
-
-const { Content } = Layout;
+import MainLayout from "./MainLayout";
 
 function App() {
     return (
         <Provider {...new Store()}>
-            <Layout>
-                <Header />
-                <Content>
-                    <Home />
-                </Content>
-            </Layout>
+            <MainLayout />
         </Provider>
     );
 }

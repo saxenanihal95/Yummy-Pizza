@@ -7,9 +7,10 @@ const { Meta } = Card;
 
 @inject("pizzaStore")
 @observer
-class App extends Component {
+class Home extends Component {
     componentDidMount() {
-        this.props.pizzaStore.getPizzaList();
+        const { getPizzaList } = this.props.pizzaStore;
+        getPizzaList();
     }
 
     render() {
@@ -45,4 +46,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default Home;

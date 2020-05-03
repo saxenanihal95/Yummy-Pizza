@@ -1,5 +1,14 @@
 import React, { Component } from "react";
-import { Layout, Drawer, Button, Badge, List, Avatar, Modal } from "antd";
+import {
+    Layout,
+    Drawer,
+    Button,
+    Badge,
+    List,
+    Avatar,
+    Modal,
+    Popover
+} from "antd";
 
 const { Header } = Layout;
 
@@ -13,24 +22,28 @@ import Register from "./Register";
 export default class extends Component {
     constructor() {
         super();
-        this.state = { visible: false };
+        this.state = { visible: false, popOverVisible: false };
     }
 
-    showDrawer = () => {
-        this.setState({
-            visible: true
-        });
-    };
+    handleVisibleChange = popOverVisible => this.setState({ popOverVisible });
 
-    onClose = () => {
-        this.setState({
-            visible: false
-        });
-    };
+    hidePopOver = () => this.setState({ popOverVisible: false });
+
+    showDrawer = () => this.setState({ visible: true });
+
+    onClose = () => this.setState({ visible: false });
 
     render() {
+        const { isAuthenticated } = this.props;
         const { cartList, total } = this.props.pizzaStore;
-        const { modalVisible, isLogin, setModalVisible } = this.props.authStore;
+        const {
+            modalVisible,
+            isLogin,
+            setModalVisible,
+            user,
+            logout
+        } = this.props.authStore;
+        const { name = "" } = user;
         return (
             <Header
                 style={{
@@ -40,16 +53,43 @@ export default class extends Component {
                 }}
             >
                 <p style={{ fontSize: 18, flex: 1, margin: 0 }}>Yummy Pizza</p>
-                <UserOutlined
-                    style={{ fontSize: 30, margin: "0px 10px" }}
-                    onClick={() => setModalVisible(true)}
-                />
+
                 <Badge count={cartList.length}>
                     <ShoppingCartOutlined
                         style={{ fontSize: 30 }}
                         onClick={this.showDrawer}
                     />
                 </Badge>
+
+                {!isAuthenticated ? (
+                    <Button
+                        onClick={() => setModalVisible(true)}
+                        style={{ margin: "0px 10px" }}
+                    >
+                        Login
+                    </Button>
+                ) : (
+                    <Popover
+                        content={
+                            <a
+                                onClick={() => {
+                                    logout();
+                                }}
+                            >
+                                Logout
+                            </a>
+                        }
+                        trigger="click"
+                        visible={this.state.popOverVisible}
+                        onVisibleChange={this.handleVisibleChange}
+                    >
+                        <UserOutlined
+                            type="primary"
+                            style={{ fontSize: 20, margin: "0px 10px" }}
+                        />
+                        {name}
+                    </Popover>
+                )}
 
                 <Drawer
                     title="Cart"
