@@ -1,33 +1,22 @@
 import React, { Component } from "react";
-import {
-    Layout,
-    Drawer,
-    Button,
-    Badge,
-    List,
-    Avatar,
-    Modal,
-    Popover
-} from "antd";
+import { Layout, Button, Badge } from "antd";
 
 const { Header } = Layout;
 
-import { ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
+import { ShoppingCartOutlined } from "@ant-design/icons";
 import { inject, observer } from "mobx-react";
-import Login from "./Login";
-import Register from "./Register";
+
+import UserPopOver from "./UserPopOver";
+import CartDrawer from "./CartDrawer";
+import AuthModal from "./AuthModal";
 
 @inject("pizzaStore", "authStore")
 @observer
 export default class extends Component {
     constructor() {
         super();
-        this.state = { visible: false, popOverVisible: false };
+        this.state = { visible: false };
     }
-
-    handleVisibleChange = popOverVisible => this.setState({ popOverVisible });
-
-    hidePopOver = () => this.setState({ popOverVisible: false });
 
     showDrawer = () => this.setState({ visible: true });
 
@@ -35,15 +24,8 @@ export default class extends Component {
 
     render() {
         const { isAuthenticated } = this.props;
-        const { cartList, total } = this.props.pizzaStore;
-        const {
-            modalVisible,
-            isLogin,
-            setModalVisible,
-            user,
-            logout
-        } = this.props.authStore;
-        const { name = "" } = user;
+        const { cartList } = this.props.pizzaStore;
+        const { setModalVisible } = this.props.authStore;
         return (
             <Header
                 style={{
@@ -69,73 +51,15 @@ export default class extends Component {
                         Login
                     </Button>
                 ) : (
-                    <Popover
-                        content={
-                            <a
-                                onClick={() => {
-                                    logout();
-                                }}
-                            >
-                                Logout
-                            </a>
-                        }
-                        trigger="click"
-                        visible={this.state.popOverVisible}
-                        onVisibleChange={this.handleVisibleChange}
-                    >
-                        <UserOutlined
-                            type="primary"
-                            style={{ fontSize: 20, margin: "0px 10px" }}
-                        />
-                        {name}
-                    </Popover>
+                    <UserPopOver />
                 )}
 
-                <Drawer
-                    title="Cart"
-                    placement="right"
-                    closable={false}
-                    onClose={this.onClose}
+                <CartDrawer
                     visible={this.state.visible}
-                >
-                    <List
-                        itemLayout="horizontal"
-                        dataSource={cartList}
-                        renderItem={item => (
-                            <List.Item>
-                                <List.Item.Meta
-                                    avatar={<Avatar src={item.image} />}
-                                    title={item.name}
-                                    description={`quantity: ${item.quantity}`}
-                                />
-                            </List.Item>
-                        )}
-                        footer={
-                            !!total && (
-                                <>
-                                    <p>total: {total}</p>
-                                    <Button
-                                        style={{ width: "100%" }}
-                                        onClick={() => {
-                                            this.onClose();
-                                            setModalVisible(true);
-                                        }}
-                                    >
-                                        Checkout
-                                    </Button>
-                                </>
-                            )
-                        }
-                    />
-                </Drawer>
-                <Modal
-                    visible={modalVisible}
-                    footer={null}
-                    title={isLogin ? "Login" : "Register"}
-                    onCancel={() => setModalVisible(false)}
-                >
-                    {isLogin ? <Login /> : <Register />}
-                </Modal>
+                    onClose={this.onClose}
+                />
+
+                <AuthModal />
             </Header>
         );
     }
