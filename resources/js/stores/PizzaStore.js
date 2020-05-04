@@ -6,6 +6,7 @@ export default class PizzaStore extends FetchBase {
     @observable pizzaList = [];
     @observable loading = true;
     @observable orderList = [];
+    @observable orderListLoading = true;
 
     getPizzaList = async () => {
         try {
@@ -52,8 +53,10 @@ export default class PizzaStore extends FetchBase {
         try {
             const data = await this.get("order/list");
             this.orderList = data;
+            this.orderListLoading = false;
         } catch (e) {
             console.log(e);
+            this.orderListLoading = false;
         }
     };
 

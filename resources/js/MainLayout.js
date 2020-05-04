@@ -6,6 +6,8 @@ import Header from "./components/Header";
 import { inject, observer } from "mobx-react";
 const { Content } = Layout;
 import { Switch, Route } from "react-router-dom";
+import Orders from "./pages/Orders";
+import { ROUTES } from "./utils/constants";
 
 @inject("authStore")
 @observer
@@ -19,9 +21,12 @@ class MainLayout extends Component {
         return (
             <Layout>
                 <Header />
-                <Content>
+                <Content style={{ margin: "0px 20px" }}>
                     <Switch>
-                        <Route path="/">
+                        <Route path={ROUTES.ORDERS}>
+                            <Orders />
+                        </Route>
+                        <Route path={ROUTES.HOME}>
                             <Home />
                         </Route>
                     </Switch>

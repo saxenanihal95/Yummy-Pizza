@@ -9,6 +9,8 @@ import { inject, observer } from "mobx-react";
 import UserPopOver from "./UserPopOver";
 import CartDrawer from "./CartDrawer";
 import AuthModal from "./AuthModal";
+import { Link } from "react-router-dom";
+import { ROUTES } from "../utils/constants";
 
 @inject("pizzaStore", "authStore")
 @observer
@@ -33,7 +35,12 @@ export default class extends Component {
                     alignItems: "center"
                 }}
             >
-                <p style={{ fontSize: 18, flex: 1, margin: 0 }}>Yummy Pizza</p>
+                <Link
+                    to={ROUTES.HOME}
+                    style={{ fontSize: 18, flex: 1, margin: 0 }}
+                >
+                    Yummy Pizza
+                </Link>
 
                 <Badge count={cartList.length}>
                     <ShoppingCartOutlined
