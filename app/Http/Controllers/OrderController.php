@@ -31,7 +31,9 @@ class OrderController extends Controller
                 $order->pizzas()->save($cproduct, ["quantity" => $pizza["quantity"], "price" => $pizza["price"], "total" => $total]);
             }
         }
-        return response()->json(["success" => true]);
+        return response()->json([
+            'message' => 'Done, your order is on the way!'
+        ]);
     }
 }
 

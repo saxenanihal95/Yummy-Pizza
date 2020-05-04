@@ -1,5 +1,6 @@
 import FetchBase from "../FetchBase";
-import { observable, computed, toJS } from "mobx";
+import { observable, computed } from "mobx";
+import { openNotificationWithIcon } from "../utils/helpers";
 
 export default class PizzaStore extends FetchBase {
     @observable pizzaList = [];
@@ -7,7 +8,7 @@ export default class PizzaStore extends FetchBase {
 
     getPizzaList = async () => {
         try {
-            const { data } = await this.get("pizza/list");
+            const data = await this.get("pizza/list");
             this.pizzaList = data.map(pizza => ({ ...pizza, quantity: 0 }));
             this.loading = false;
         } catch (e) {
@@ -39,7 +40,8 @@ export default class PizzaStore extends FetchBase {
             pizza: this.pizzaList.filter(({ quantity }) => quantity)
         };
         try {
-            const { data } = await this.post("order/new", { ...params });
+            const data = await this.post("order/new", { ...params });
+            openNotificationWithIcon("success", data.message);
         } catch (e) {
             console.log(e);
         }

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { openNotificationWithIcon } from "./utils/helpers";
 
 export default class FetchBase {
     constructUrl = url => `api/${url}`;
@@ -9,8 +10,26 @@ export default class FetchBase {
               }
             : undefined;
 
-    get = url => axios.get(this.constructUrl(url), { headers: this.headers() });
+    get = async url => {
+        try {
+            const res = await axios.get(this.constructUrl(url), {
+                headers: this.headers()
+            });
+            return res.data;
+        } catch (e) {
+            openNotificationWithIcon("error", e.message);
+        }
+    };
 
-    post = (url, params) =>
-        axios.post(this.constructUrl(url), params, { headers: this.headers() });
+    post = async (url, params) => {
+        try {
+            const res = await axios.post(this.constructUrl(url), params, {
+                headers: this.headers()
+            });
+            return res.data;
+        } catch (e) {
+            openNotificationWithIcon("error", e.response.data.message);
+            throw new Error(e.response.data.message);
+        }
+    };
 }
