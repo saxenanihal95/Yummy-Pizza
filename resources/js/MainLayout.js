@@ -5,6 +5,7 @@ import { Layout } from "antd";
 import Header from "./components/Header";
 import { inject, observer } from "mobx-react";
 const { Content } = Layout;
+import { Switch, Route } from "react-router-dom";
 
 @inject("authStore")
 @observer
@@ -19,7 +20,11 @@ class MainLayout extends Component {
             <Layout>
                 <Header />
                 <Content>
-                    <Home />
+                    <Switch>
+                        <Route path="/">
+                            <Home />
+                        </Route>
+                    </Switch>
                 </Content>
             </Layout>
         );
