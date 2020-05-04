@@ -5,6 +5,7 @@ import { openNotificationWithIcon } from "../utils/helpers";
 export default class PizzaStore extends FetchBase {
     @observable pizzaList = [];
     @observable loading = true;
+    @observable orderList = [];
 
     getPizzaList = async () => {
         try {
@@ -42,6 +43,15 @@ export default class PizzaStore extends FetchBase {
         try {
             const data = await this.post("order/new", { ...params });
             openNotificationWithIcon("success", data.message);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    getOrderList = async () => {
+        try {
+            const data = await this.get("order/list");
+            this.orderList = data;
         } catch (e) {
             console.log(e);
         }

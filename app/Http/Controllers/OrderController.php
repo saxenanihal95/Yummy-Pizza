@@ -14,6 +14,13 @@ class OrderController extends Controller
         $this->middleware('auth:api', ['except' => []]);
     }
 
+    public function index(Request $request)
+    {
+        $user = $request->user();
+        $order = Order::with("pizzas")->where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
+        return response()->json(["success" => true, "orders" => $order]);
+    }
+
     public function create(Request $request)
     {
 
